@@ -10,7 +10,7 @@ RAIZ = pathlib.Path(__file__).resolve().parent.parent
 F = RAIZ / 'fonte'
 V = time.strftime('%Y%m%d%H%M%S')
 
-(RAIZ / 'assets' / 'deck.css').write_text((F / 'base.css').read_text() + (F / 'kv.css').read_text())
+(RAIZ / 'assets' / 'deck.css').write_text((F / 'base.css').read_text() + (F / 'kv.css').read_text() + (F / 'arcor-tema.css').read_text())
 (RAIZ / 'assets' / 'deck.js').write_text((F / 'deck.js').read_text())
 
 telas = (F / 'telas.html').read_text()
@@ -28,7 +28,7 @@ html = f'''<!doctype html>
 <link rel="icon" href="assets/75lab-lime.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/deck.css?v={V}">
 </head>
 <body>
@@ -50,7 +50,7 @@ html = f'''<!doctype html>
     <div class="nav"><button id="ant" aria-label="Tela anterior" data-cursor="Voltar">←</button><span id="cont">01 / {total:02d}</span><button id="prox" aria-label="Próxima tela" data-cursor="Seguir">→</button></div>
   </footer>
   <div id="prog"><i></i></div>
-  <div id="wipe"><img src="assets/75lab-black.png" alt=""></div>
+  <div id="wipe"><img src="assets/logos/arcor.svg" alt=""></div>
   <nav id="sumario" aria-label="Sumário"><button class="botao mini fechar" data-cursor="Fechar">Fechar ✕</button><h2>Sumário · <span>Arcor × 75 LAB</span></h2><ol id="sumLista"></ol></nav>
   <div class="grao"></div>
 </div></div>

@@ -59,7 +59,7 @@
     if(reduz||!wipe.animate){aplicar(n);return;}
     const dir=n>atual?1:-1, paraLime=telas[n].dataset.tema==='lime';
     wipe.classList.toggle('ink',paraLime);
-    wipe.querySelector('img').src=paraLime?'assets/75lab-lime.png':'assets/75lab-black.png';
+    // a transição mostra o logo da Arcor
     const de=dir>0?'inset(0 0 0 100%)':'inset(0 100% 0 0)', meio='inset(0 0 0 0)', para=dir>0?'inset(0 100% 0 0)':'inset(0 0 0 100%)';
     emTransicao=true;
     const ease='cubic-bezier(.7,0,.3,1)';

@@ -1,0 +1,182 @@
+
+/* =====================================================================
+   TEMA ARCOR · azul e dourado do logo, tipografia redonda, cantos suaves
+   e nenhuma imagem cortada: peça e KV sempre inteiros, numa moldura branca
+   ===================================================================== */
+:root{
+  --ink:#06204A;--ink-2:#0A2D63;--ink-3:#103C80;--ink-4:#16488F;
+  --paper:#F4F7FC;--paper-2:#E6EDF8;--paper-3:#D3DEEF;
+  --lime:#FDB827;--lime-2:#F5A800;--teal:#1A5FB4;--teal-2:#5B9BE6;--alerta:#E5322D;
+  --titulo:'Montserrat',system-ui,sans-serif;--corpo:'Nunito Sans',system-ui,sans-serif;--mono:'Montserrat',system-ui,sans-serif;
+  --linha-c:rgba(6,32,74,.14);--linha-e:rgba(255,255,255,.2);
+  --raio:18px;--raio-p:10px;
+}
+html,body,#wrap{background:#041733}
+#stage{background:var(--ink-2)}
+.tela[data-tema=escuro]{background:radial-gradient(1100px 760px at 78% 28%,#1652A8 0,#0A2D63 52%,#061E45 100%);color:#fff}
+.tela[data-tema=claro]{background:var(--paper)}
+.tela[data-tema=lime]{background:var(--lime);color:var(--ink)}
+.tela[data-tema=escuro]::before{background:radial-gradient(520px circle at var(--mx) var(--my),rgba(253,184,39,.10),transparent 70%)}
+.grao{opacity:.035}
+
+/* tipografia */
+h1,h2,h3,.num{font-family:var(--titulo);font-weight:800;text-transform:none;letter-spacing:-.025em;line-height:1.06}
+.tela>.miolo>h2{font-size:46px;line-height:1.08}
+.eyebrow{font-family:var(--titulo);font-weight:800;font-size:12px;letter-spacing:.16em}
+.eyebrow b{color:var(--teal)}
+[data-tema=escuro] .eyebrow b,[data-tema=escuro] .eyebrow{color:var(--lime)}
+[data-tema=escuro] .eyebrow{color:rgba(255,255,255,.75)}
+[data-tema=escuro] .eyebrow b{color:var(--lime)}
+.t-lime{color:var(--lime)}
+[data-tema=claro] .t-lime,[data-tema=claro] .t-teal{color:var(--teal)}
+.apagada{opacity:.45}
+.onda::after{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='12' viewBox='0 0 40 12'><path d='M0 6 Q10 0 20 6 T40 6' fill='none' stroke='%23FDB827' stroke-width='3.4'/></svg>")}
+.lead{font-family:var(--corpo)}
+
+/* botões, rótulos e moldura geral */
+.botao{border-radius:999px;font-family:var(--titulo);font-weight:800;letter-spacing:.06em;border-width:2px}
+.botao:hover{background:var(--lime);color:var(--ink);border-color:var(--lime);box-shadow:0 8px 22px -8px rgba(6,32,74,.55);transform:translateY(-2px)}
+.botao.cheio{background:var(--lime);color:var(--ink);border-color:var(--lime)}
+[data-tema=claro] .botao.cheio,[data-tema=lime] .botao.cheio{background:var(--teal);color:#fff;border-color:var(--teal)}
+.cta{border-radius:999px;font-family:var(--titulo);font-weight:800;background:var(--lime);color:var(--ink)}
+.etq{border-radius:var(--raio-p);font-family:var(--titulo);font-weight:800;background:var(--lime);color:var(--ink)}
+.etq b{font-family:var(--titulo);font-weight:800;font-size:15px}
+.fonte{font-family:var(--corpo);font-size:11px}
+.liga,[data-tema=escuro] .liga{stroke:var(--lime)}
+[data-tema=claro] .liga{stroke:var(--teal)}
+
+/* moldura: a imagem inteira, centrada, sem corte */
+.moldura,.s-mrc .heroi,.s-7b .tres-h figure,.s-cmp .quatro-c figure,.s-gal .ficha-g figure{background:#fff;border-radius:var(--raio);overflow:hidden}
+.s-mrc .heroi img,.s-7b .tres-h img,.s-cmp .quatro-c img,.s-gal .ficha-g figure img,.s-gal .grade-g button img,.s-mrc .faixa-m img,.s-jor .et .imgs img,.s-fim2 .mosaico-f img,.s-reg .foto-regra img,.s-met .exemplo img{object-fit:contain;background:#fff}
+
+/* moldura global: topo, rodapé, transição, cursor */
+#topo .lab.m-escuro{filter:brightness(0) invert(1)}
+#btnSumario,#btnPdf{border-radius:999px;font-family:var(--titulo);font-weight:800}
+#btnSumario:hover,#btnPdf:hover{background:var(--lime);border-color:var(--lime);color:var(--ink)}
+#rodape{font-family:var(--titulo);font-weight:700}
+#rodape .nav button{border-radius:50%;width:34px;height:34px}
+#rodape .nav button:hover{background:var(--lime);border-color:var(--lime)}
+#prog i{background:var(--lime)}
+#wipe{background:var(--teal)}
+#wipe.ink{background:var(--ink)}
+#wipe img{height:72px;opacity:1}
+#sumario{background:var(--ink)}
+#sumario h2{font-size:44px}
+#sumario li button b{color:var(--lime);font-family:var(--titulo)}
+#sumario li button:hover,#sumario li button.atual{background:var(--lime);color:var(--ink);border-radius:var(--raio-p)}
+#sumario li.cap-s{color:var(--lime);font-family:var(--titulo);font-weight:800}
+#anel.sobre{background:var(--lime)}
+#caixa{background:rgba(4,23,51,.94)}
+#caixa img{background:#fff;border-radius:var(--raio);padding:14px}
+#caixa .fechar{border-radius:999px}
+
+/* 01 capa: KVs inteiros em 16:9 e o arco dourado do logo */
+.s-capa{background:radial-gradient(900px 700px at 80% 40%,#1A5FB4 0,#0A2D63 55%,#061E45 100%)}
+.s-capa .veu{display:none}
+.s-capa .arco{position:absolute;left:-200px;right:-200px;top:470px;height:900px;border-radius:50%;border-top:26px solid var(--lime);opacity:.9;transform:rotate(-4deg);pointer-events:none}
+.s-capa .kvs-capa{left:820px;right:72px;top:118px;bottom:auto;transform:none;grid-template-rows:auto auto;gap:16px}
+.s-capa .kvs-capa img{aspect-ratio:16/9;height:auto;object-fit:contain;border-radius:var(--raio);box-shadow:0 18px 40px -18px rgba(0,0,0,.6);animation:flutua-kv 7s ease-in-out infinite;background:#000}
+.s-capa .kvs-capa img:nth-child(2){animation-delay:-1.75s}.s-capa .kvs-capa img:nth-child(3){animation-delay:-3.5s}.s-capa .kvs-capa img:nth-child(4){animation-delay:-5.25s}
+@keyframes flutua-kv{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.s-capa .texto{width:700px}
+.s-capa h1{font-size:72px;line-height:1.02;letter-spacing:-.03em}
+.s-capa .eyebrow{color:rgba(255,255,255,.8)}
+.nums-capa b{font-family:var(--titulo);font-weight:900;font-size:46px;color:var(--lime)}
+.nums-capa span{font-family:var(--titulo)}
+.s-capa .marquee{background:var(--lime);color:var(--ink)}
+.s-capa .marquee div{font-family:var(--titulo);font-weight:900;font-size:24px}
+.s-capa .marquee span::after{content:'●';font-size:12px}
+
+/* 02 por que */
+.s-porq .trio>div{border-radius:var(--raio);border:0;box-shadow:0 14px 34px -20px rgba(6,32,74,.45)}
+.s-porq .trio>div.sai{background:var(--teal);color:#fff}
+.s-porq .trio .num{font-size:96px;color:var(--teal)}
+.s-porq .trio .sai .num,.s-porq .trio .sai .n{color:var(--lime)}
+.s-porq .trio b{font-size:24px}
+.s-porq .trio .n{font-family:var(--titulo)}
+.sta::before{background:var(--lime)}
+.sta::after{border-left-color:var(--lime)}
+
+/* 03 KVs: quatro KVs inteiros lado a lado */
+.s-kvs .quatro-kv{grid-template-columns:repeat(4,1fr);gap:18px;top:250px}
+.s-kvs figure{height:auto;background:none;overflow:visible}
+.s-kvs figure::after{display:none}
+.s-kvs figure img{aspect-ratio:16/9;height:auto;object-fit:contain;border-radius:var(--raio);opacity:1;background:#000;box-shadow:0 16px 36px -18px rgba(0,0,0,.6)}
+.s-kvs figure q{position:static;display:block;margin-top:18px;font-family:var(--titulo);font-weight:800;font-size:21px;line-height:1.2;text-transform:none;color:#fff}
+.s-kvs figure span{position:static;display:inline-block;margin-top:12px;font-family:var(--titulo);font-weight:800;background:var(--lime);color:var(--ink);padding:4px 10px;border-radius:999px}
+
+/* 04 método */
+.s-met .dg{border:0;border-radius:var(--raio);box-shadow:0 14px 34px -20px rgba(6,32,74,.45)}
+.s-met .dg .n{font-family:var(--titulo);font-weight:900;color:var(--lime);-webkit-text-stroke:1px var(--teal)}
+.s-met .dg b{font-size:21px}
+.s-met .dg em{font-family:var(--titulo);color:var(--teal)}
+.s-met .exemplo{background:var(--teal);border-radius:var(--raio)}
+.s-met .exemplo img{border-radius:var(--raio-p)}
+.s-met .exemplo img:first-child{object-fit:contain;background:#000}
+.s-met .exemplo p{font-family:var(--titulo);font-weight:800;font-size:22px;text-transform:none}
+
+/* 05 régua */
+.s-reg .lados>div{border-radius:var(--raio);background:rgba(255,255,255,.06)}
+.s-reg .lados .entra{border-color:var(--lime)}
+.s-reg li{font-family:var(--corpo)}
+.s-reg .foto-regra img{border-radius:var(--raio);border:0;height:340px;padding:10px}
+.s-reg .foto-regra p b{font-family:var(--titulo);font-weight:800;font-size:21px;text-transform:none}
+
+/* 06 sistema (dourado) */
+.s-sis .ps{border:0;border-radius:var(--raio);background:#fff}
+.s-sis .ps:nth-child(3){background:var(--ink);color:#fff}
+.s-sis .tag{border-radius:999px;font-family:var(--titulo);background:var(--teal);color:#fff}
+.s-sis .ps:nth-child(3) .tag{background:var(--lime);color:var(--ink)}
+.s-sis .ps b{font-size:32px}
+.s-sis .tir i{font-family:var(--titulo);font-weight:800;font-size:18px}
+.s-sis .tir span{font-family:var(--titulo)}
+
+/* 07 a 10 marcas */
+.s-mrc .leitura dt{font-family:var(--titulo)}
+.s-mrc .porque{font-family:var(--titulo);font-weight:800;text-transform:none;font-size:20px;line-height:1.25}
+.s-mrc .kv-m{object-fit:contain;background:#000;border-radius:var(--raio-p)}
+.s-mrc .faixa-m img{border-radius:var(--raio-p)}
+.s-7b .cab-m{width:1060px}
+.s-7b .cab-m h2{font-size:50px}
+.s-7b .kv-m{left:1172px;width:356px;height:200px}
+.s-rk>.miolo>h2,.s-tg>.miolo>h2{font-size:46px}
+.s-bt>.miolo>h2{font-size:44px}
+
+/* 11 galeria */
+.s-gal .filtros button{border-radius:999px;font-family:var(--titulo);font-weight:800}
+.s-gal .filtros button.on,.s-gal .filtros button:hover{background:var(--teal);color:#fff;border-color:var(--teal)}
+.s-gal .grade-g button{border-radius:var(--raio-p);border:2px solid var(--paper-3)}
+.s-gal .grade-g button span{background:rgba(6,32,74,.82);font-family:var(--titulo)}
+.s-gal .grade-g button.on{border-color:var(--teal)}
+.s-gal .ficha-g{border-radius:var(--raio);background:var(--ink);overflow:hidden}
+.s-gal .ficha-g figure{border-radius:0}
+.s-gal .ficha-g .dados b{font-family:var(--titulo);font-weight:800;font-size:22px;text-transform:none}
+.s-gal .ficha-g .dados .cod{color:var(--lime);font-family:var(--titulo)}
+.s-gal .ficha-g .dados dt{font-family:var(--titulo)}
+
+/* 12 comparar */
+.s-cmp .tipos button{border-radius:999px;font-family:var(--titulo);font-weight:800;border-color:rgba(255,255,255,.6)}
+.s-cmp .tipos button.on,.s-cmp .tipos button:hover{background:var(--lime);border-color:var(--lime);color:var(--ink)}
+.s-cmp .leg-c{font-family:var(--corpo)}
+
+/* 13 jornada */
+.s-jor .et{border:0;border-radius:var(--raio);box-shadow:0 14px 34px -20px rgba(6,32,74,.45)}
+.s-jor .et .n{border-radius:999px;background:var(--teal);font-family:var(--titulo)}
+.s-jor .et b{font-size:24px}
+.s-jor .et .imgs img{border-radius:var(--raio-p);border:1px solid var(--paper-3)}
+.s-jor .et em{font-family:var(--titulo);color:var(--teal)}
+.s-jor .porque-j{font-family:var(--titulo);font-weight:800;text-transform:none;font-size:23px;line-height:1.25;border-left-color:var(--lime)}
+
+/* 14 depois */
+.s-dep2 .bol{border-radius:50%;font-family:var(--titulo);border-color:var(--lime);background:var(--ink-2)}
+.s-dep2 .pd b{font-size:24px}
+.s-dep2 .pd em{font-family:var(--titulo)}
+
+/* 15 encerramento (dourado) */
+.s-fim2>.miolo>h2{font-size:70px}
+.s-fim2 .mosaico-f img{border:0;border-radius:var(--raio)}
+.s-fim2 .inst{font-family:var(--corpo);border-top-color:rgba(6,32,74,.25)}
+.s-capa .arco{top:712px;transform:rotate(-2.5deg);border-top-width:20px}
+.s-kvs .quatro-kv{top:290px}
+.s-capa .duas-marcas .lab{filter:brightness(0) invert(1)}
+.s-capa .arco{opacity:.75}

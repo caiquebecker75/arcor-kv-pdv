@@ -16,15 +16,15 @@ html = f'''<!doctype html>
 <meta charset="utf-8">
 <meta name="robots" content="noindex">
 <title>{titulo} · abrir em HTML</title>
-<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/deck.css">
 <style>
 html,body{{width:1600px;height:900px;overflow:hidden;background:var(--ink-2)}}
-.abre{{position:absolute;inset:0;padding:96px 120px;color:var(--paper);background:radial-gradient(700px circle at 78% 42%,rgba(192,238,78,.12),transparent 70%),var(--ink-2)}}
+.abre{{position:absolute;inset:0;padding:96px 120px;color:var(--paper);background:radial-gradient(900px 700px at 80% 40%,#1A5FB4 0,#0A2D63 55%,#061E45 100%)}}
 .abre .marcas{{display:flex;align-items:center;gap:20px}}
-.abre .marcas .arcor{{height:78px}}.abre .marcas .lab{{height:34px}}.abre .marcas span{{font-family:var(--mono);opacity:.6}}
+.abre .marcas .arcor{{height:78px}}.abre .marcas .lab{{height:34px;filter:brightness(0) invert(1)}}.abre .marcas span{{font-family:var(--mono);opacity:.6}}
 .abre .eyebrow{{display:block;margin:64px 0 18px;color:var(--lime)}}
-.abre h1{{font-size:104px;line-height:.98;width:900px}}
+.abre h1{{font-size:76px;line-height:1.04;width:900px}}
 .abre h1 em{{font-style:normal;color:var(--lime)}}
 .abre p{{font-size:21px;line-height:1.45;width:780px;margin:26px 0 38px;opacity:.88}}
 .abre .botao{{font-size:17px;padding:24px 30px;gap:16px}}
