@@ -17,34 +17,49 @@ if (process.env.SO_MONTAR) {
 const navegador = await chromium.launch({ channel: 'chrome', args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
 const pg = await navegador.newPage({ viewport: { width: 1600, height: 900 }, deviceScaleFactor: 2 });
 pg.on('pageerror', (e) => console.log('erro na página:', e.message));
-await pg.goto(BASE.replace(/#.*$/, '') + (BASE.includes('?') ? '&' : '?') + 'pdf=1#1', { waitUntil: 'networkidle' });
+await pg.goto(BASE.replace(/#.*$/, '') + (BASE.includes('?') ? '&' : '?') + 'pdf=1#1', { waitUntil: 'load', timeout: 120000 });
 await pg.evaluate(() => document.fonts.ready);
 const total = await pg.evaluate(() => document.querySelectorAll('.tela').length);
 if (PASTA) mkdirSync(PASTA, { recursive: true });
 
-for (let n = 1; n <= total; n++) {
-  await pg.evaluate((n) => { location.hash = '#' + n; }, n);
-  await pg.waitForFunction((n) => document.querySelector('#cont').textContent.startsWith(String(n).padStart(2, '0')), n);
-  // espera as imagens da tela e, na tela de AR, os modelos 3D
-  await pg.evaluate(async () => {
-    const t = document.querySelector('.tela.ativa');
-    // imagem escondida com loading=lazy nunca carrega: só espera as visíveis, e no máximo 15 s
-    const vis = [...t.querySelectorAll('img')].filter((i) => i.offsetParent !== null);
-    vis.forEach((i) => { i.loading = 'eager'; });
-    await Promise.race([Promise.all(vis.map((i) => i.complete ? 0 : new Promise((r) => { i.onload = i.onerror = r; }))), new Promise((r) => setTimeout(r, 15000))]);
-    const mvs = [...t.querySelectorAll('model-viewer')];
-    if (mvs.length) {
-      const ate = Date.now() + 30000;
-      while (Date.now() < ate && !mvs.every((m) => m.loaded)) await new Promise((r) => setTimeout(r, 300));
-      await new Promise((r) => setTimeout(r, 1500));
-    }
-  });
+// espera as imagens visíveis da tela e, quando houver, os modelos 3D
+const esperaTela = () => pg.evaluate(async () => {
+  const t = document.querySelector('.tela.ativa');
+  // imagem escondida com loading=lazy nunca carrega: só espera as visíveis, e no máximo 15 s
+  const vis = [...t.querySelectorAll('img')].filter((i) => i.offsetParent !== null);
+  vis.forEach((i) => { i.loading = 'eager'; });
+  await Promise.race([Promise.all(vis.map((i) => i.complete ? 0 : new Promise((r) => { i.onload = i.onerror = r; }))), new Promise((r) => setTimeout(r, 15000))]);
+  const mvs = [...t.querySelectorAll('model-viewer')];
+  if (mvs.length) {
+    await new Promise((r) => setTimeout(r, 800));
+    const ate = Date.now() + 60000;
+    while (Date.now() < ate && !mvs.every((m) => m.loaded)) await new Promise((r) => setTimeout(r, 300));
+    await new Promise((r) => setTimeout(r, 1500));
+  }
+});
+const fotografa = async (nome) => {
   await pg.waitForTimeout(700);
   const jpg = await pg.screenshot({ type: 'jpeg', quality: QUALIDADE, timeout: 180000 });
-  if (PASTA) writeFileSync(`${PASTA}/${String(n).padStart(2, '0')}.jpg`, jpg);
+  if (PASTA) writeFileSync(`${PASTA}/${nome}.jpg`, jpg);
   paginas.push(jpg);
-  console.log('página', n, Math.round(jpg.length / 1024) + ' KB');
+  console.log('página', paginas.length, nome, Math.round(jpg.length / 1024) + ' KB');
+};
+
+for (let n = 1; n <= total; n++) {
+  await pg.evaluate((n) => { location.hash = '#' + n; }, n);
+  await pg.waitForFunction((n) => document.querySelector('#cont').textContent.startsWith(String(n).padStart(2, '0')), n, { timeout: 120000 });
+  // tela com botões (data-estados): uma página para cada botão aberto
+  const estados = await pg.evaluate(() => { const t = document.querySelector('.tela.ativa'); return t.dataset.estados ? t.querySelectorAll(t.dataset.estados).length : 0; });
+  for (let k = 0; k < Math.max(1, estados); k++) {
+    if (estados) {
+      await pg.evaluate((k) => { const t = document.querySelector('.tela.ativa'); t.querySelectorAll(t.dataset.estados)[k].click(); }, k);
+      await pg.waitForTimeout(600);
+    }
+    await esperaTela();
+    await fotografa(String(n).padStart(2, '0') + '-' + (k + 1));
+  }
 }
+
 await navegador.close();
 }
 
